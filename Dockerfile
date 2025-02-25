@@ -30,15 +30,11 @@ RUN apt-get install -y \
 COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
 COPY entrypoint.sh /entrypoint.sh
+COPY --from=build /UserData.zip UserData.zip
 
-RUN pwd
-
-RUN ls /
-
-RUN unzip UserData.zip
+RUN unzip /UserData.zip
 
 COPY --from=build /UserData UserData
-
 
 
 # Đặt biến môi trường cho Java (nếu cần)
