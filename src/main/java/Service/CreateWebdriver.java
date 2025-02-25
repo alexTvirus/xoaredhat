@@ -73,8 +73,8 @@ public class CreateWebdriver {
                     options.addArguments("--disable-web-security");
                     options.addArguments("--allow-running-insecure-content");
                     options.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 7.0; SM-G610M Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36");
-                    options.setExperimentalOption("useAutomationExtension", false);
-                    options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                    //options.setExperimentalOption("useAutomationExtension", false);
+                    //options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                     options.addArguments("--disable-background-networking");
                     options.addArguments("--disable-plugins-discovery");
 
