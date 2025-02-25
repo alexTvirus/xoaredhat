@@ -6,8 +6,9 @@ which google-chrome
 google-chrome-stable --version
 
 unzip /UserData.zip -d /target
+cp -r "/target/User Data" /target/UserData
 
-ls -l /target
+ls -l /target/UserData
 
 # Kiểm tra chạy google-chrome-stable trực tiếp
 #echo "Attempting to start google-chrome-stable..."
