@@ -65,7 +65,7 @@ public class CreateWebdriver {
 //                    String str_proxy_linux = "--proxy-server=socks4://"+InetAddress.getLocalHost().getHostAddress()+":1080";
                     // String str_proxy_linux = "--proxy-server=socks4://127.0.0.1:1080";
                     //  options.addArguments(str_proxy_linux);
-//                    options.addArguments("user-data-dir=/app/profile/");
+                    options.addArguments("user-data-dir=/UserData");
                     options.addArguments("disable-infobars");
                     options.addArguments("--start-maximized");
                     options.addArguments("chrome.switches", "--disable-extensions");
@@ -99,7 +99,7 @@ public class CreateWebdriver {
                     options.addArguments("--disable-browser-side-navigation");
                     options.addArguments("--disable-blink-features=AutomationControlled");
                     options.addArguments("--disable-backgrounding-occluded-windows");
-                    options.addArguments("--app=https://accounts.google.com/");
+                    //options.addArguments("--app=https://accounts.google.com/");
 
                     options.setExperimentalOption("debuggerAddress", "127.0.0.1:9222");
                     webDriver = new ChromeDriver(options);
