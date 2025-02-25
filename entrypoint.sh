@@ -3,6 +3,8 @@
 
 which google-chrome
 
+google-chrome-stable --version
+
 #ls -l /
 
 # Kiểm tra chạy google-chrome-stable trực tiếp
