@@ -52,6 +52,6 @@ RUN chmod 777 /chromedriver
 EXPOSE 7860
 #ENTRYPOINT ["java","-Dfile.encoding=UTF-8","-jar","target/dependency/webapp-runner.jar" ,"--port","7860","target/*.war"]
 
-RUN chmod +x /entrypoint.sh
+RUN chmod 777 /entrypoint.sh
 # Set the entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
