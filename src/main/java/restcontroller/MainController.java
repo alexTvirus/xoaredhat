@@ -60,7 +60,8 @@ public class MainController {
     String startAuto() {
         try {
             if (VariableSession.flag_status_is_first_run_app) {
-//                Runtime.getRuntime().exec("google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222");
+                Runtime.getRuntime().exec("google-chrome-stable --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222 &");
+                Thread.sleep(4000);
                 webDriver = createWebdriver.getGoogle(Constant.binaryGoogleHeroku);
                 VariableSession.flag_status_is_first_run_app = false;
                 myAction1 = new Actions(MainController.webDriver);
@@ -152,25 +153,6 @@ public class MainController {
         return "running";
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
-        WebDriver driver = null;
-        try {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
-            driver.get("https://www.google.com");
-            System.out.println("Tiêu đề trang: " + driver.getTitle());
-            driver.quit();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return "index";
-    }
 
     @RequestMapping(value = "/setVerifyCode", method = RequestMethod.GET, headers = "Connection!=Upgrade")
     public String setVerifyCode(
