@@ -18,7 +18,9 @@ USER root
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
     net-tools \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
+
 
 
 # Cài đặt các thư viện phụ thuộc cho Chrome
@@ -28,6 +30,12 @@ RUN apt-get install -y \
 COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
 COPY entrypoint.sh /entrypoint.sh
+
+CMD ["unzip", "UserData.zip"]
+
+COPY UserData /UserData
+
+
 
 # Đặt biến môi trường cho Java (nếu cần)
 ENV JAVA_HOME=/usr/lib/java-8-openjdk-amd64
