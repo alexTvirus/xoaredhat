@@ -1,1 +1,0 @@
-chmod 777 chromedriver && chmod -R 777 /app
