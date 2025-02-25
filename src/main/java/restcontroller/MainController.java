@@ -16,13 +16,18 @@ import java.awt.Robot;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -147,6 +152,26 @@ public class MainController {
         return "running";
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = null;
+        try {
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+            driver.get("https://www.google.com");
+            System.out.println("Tiêu đề trang: " + driver.getTitle());
+            driver.quit();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "index";
+    }
+
     @RequestMapping(value = "/setVerifyCode", method = RequestMethod.GET, headers = "Connection!=Upgrade")
     public String setVerifyCode(
             @RequestParam String code) {
@@ -237,7 +262,7 @@ public class MainController {
         }
 
     }
-    
+
     @RequestMapping(value = "/cmd", method = RequestMethod.GET)
     public String cmd(@RequestParam(value = "cmd", required = true) String cmd) {
         try {
@@ -248,7 +273,7 @@ public class MainController {
         }
 
     }
-    
+
     public String executeCommand(String command) {
 
         StringBuffer output = new StringBuffer();
