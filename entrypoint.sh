@@ -15,7 +15,7 @@ netstat -tuln | grep 4444 || echo "Warning: Selenium Server not listening on 657
 
 # Kiểm tra chạy google-chrome-stable trực tiếp
 echo "Attempting to start google-chrome-stable..."
-google-chrome-stable --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222 --dump-dom https://www.google.com > /tmp/chrome_output 2>&1
+google-chrome-stable --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222 https://www.google.com > /tmp/chrome_output 2>&1
 CHROME_EXIT_CODE=$?
 if [ $CHROME_EXIT_CODE -eq 0 ]; then
     echo "google-chrome-stable started successfully!"
