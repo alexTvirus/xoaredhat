@@ -32,9 +32,9 @@ COPY --from=build /target target
 COPY entrypoint.sh /entrypoint.sh
 COPY --from=build /UserData.zip UserData.zip
 
-RUN unzip /UserData.zip
 
-COPY --from=build /UserData UserData
+
+
 
 
 # Đặt biến môi trường cho Java (nếu cần)
