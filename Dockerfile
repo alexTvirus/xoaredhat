@@ -8,43 +8,31 @@ RUN mvn clean install -DskipTests
 #
 # Package stage
 #
-FROM openjdk:11-jdk-slim
+FROM selenium/standalone-chrome:latest
+
+USER root
 
 # Cài đặt các công cụ cần thiết và Java
 RUN apt-get update && apt-get install -y \
-    wget \
-    curl \
-    unzip \
-    xvfb \
-    libxi6 \
-    libgconf-2-4 \
+    openjdk-11-jdk \
     && rm -rf /var/lib/apt/lists/*
 
-# Cài đặt Google Chrome
-RUN apt-get update && \
-    apt-get install -y wget gnupg ca-certificates apt-transport-https && \
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get update && \
-    apt-get install -y google-chrome-stable
 
 # Cài đặt các thư viện phụ thuộc cho Chrome
 RUN apt-get install -y \
-    libappindicator3-1 \
-    libdbus-glib-1-2 \
-    libxss1 \
-    xdg-utils
+	procps
 
 COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
 COPY entrypoint.sh /entrypoint.sh
 
-
+# Đặt biến môi trường cho Java (nếu cần)
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 
 
 # Đặt biến môi trường để chạy Chrome ở chế độ headless
-ENV DISPLAY=:99
 
 RUN chmod -R 777 /target
 RUN chmod 777 /chromedriver

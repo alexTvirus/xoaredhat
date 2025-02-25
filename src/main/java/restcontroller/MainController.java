@@ -55,7 +55,7 @@ public class MainController {
     String startAuto() {
         try {
             if (VariableSession.flag_status_is_first_run_app) {
-                Runtime.getRuntime().exec("/usr/bin/google-chrome --headless --no-sandbox --disable-gpu --remote-debugging-port=9222");
+                Runtime.getRuntime().exec("google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222");
                 webDriver = createWebdriver.getGoogle(Constant.binaryGoogleHeroku);
                 VariableSession.flag_status_is_first_run_app = false;
                 myAction1 = new Actions(MainController.webDriver);
