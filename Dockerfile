@@ -8,13 +8,14 @@ RUN mvn clean install -DskipTests
 #
 # Package stage
 #
-FROM selenium/standalone-chrome:latest
+FROM selenium/standalone-chrome:3.141.59
 
 USER root
 
 # Cài đặt các công cụ cần thiết và Java
 RUN apt-get update && apt-get install -y \
     openjdk-11-jdk \
+    net-tools \
     && rm -rf /var/lib/apt/lists/*
 
 
