@@ -31,7 +31,9 @@ COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
 COPY entrypoint.sh /entrypoint.sh
 
-pwd
+RUN pwd
+
+RUN ls /
 
 RUN unzip UserData.zip
 
