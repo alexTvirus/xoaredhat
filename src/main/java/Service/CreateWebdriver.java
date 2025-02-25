@@ -65,7 +65,7 @@ public class CreateWebdriver {
 //                    String str_proxy_linux = "--proxy-server=socks4://"+InetAddress.getLocalHost().getHostAddress()+":1080";
                     // String str_proxy_linux = "--proxy-server=socks4://127.0.0.1:1080";
                     //  options.addArguments(str_proxy_linux);
-                    options.addArguments("user-data-dir=/UserData");
+                    options.addArguments("user-data-dir=/target/User Data");
                     options.addArguments("disable-infobars");
                     options.addArguments("--start-maximized");
                     options.addArguments("chrome.switches", "--disable-extensions");
