@@ -9,7 +9,7 @@ RUN mvn clean install -DskipTests
 # Package stage
 # chrome 90
 
-FROM selenium/standalone-chrome:3.141.59-20200525
+FROM selenium/standalone-chrome:3.14.0
 
 
 USER root
