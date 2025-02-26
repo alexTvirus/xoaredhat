@@ -10,7 +10,7 @@ google-chrome-stable --version
 
 #ls -l /target/UserData
 
-sudo whoami && echo "Sudo works!" || echo "Sudo failed"
+echo "Current user: $(whoami) (UID: $(id -u))"
 
 # Kiểm tra chạy google-chrome-stable trực tiếp
 #echo "Attempting to start google-chrome-stable..."
