@@ -57,7 +57,7 @@ RUN chmod 777 /entrypoint.sh
 USER root
 
 RUN deluser seluser
-RUN adduser --uid 0 --disabled-password  --group root --shell /bin/bash seluser
+RUN useradd -u 0 -D -H -G root -s /bin/bash seluser
 
 CMD ["/entrypoint.sh"]
 #ENTRYPOINT ["/entrypoint.sh"]
