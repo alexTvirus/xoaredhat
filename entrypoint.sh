@@ -5,10 +5,12 @@ which google-chrome
 
 google-chrome-stable --version
 
-unzip /UserData.zip -d /target
-cp -r "/target/User Data" /target/UserData
+#unzip /UserData.zip -d /target
+#cp -r "/target/User Data" /target/UserData
 
-ls -l /target/UserData
+#ls -l /target/UserData
+
+sudo whoami && echo "Sudo works!" || echo "Sudo failed"
 
 # Kiểm tra chạy google-chrome-stable trực tiếp
 #echo "Attempting to start google-chrome-stable..."
