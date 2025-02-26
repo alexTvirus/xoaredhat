@@ -13,9 +13,9 @@ google-chrome-stable --version
 echo "Current user: $(whoami) (UID: $(id -u))"
 
 # Các lệnh yêu cầu quyền root
-touch /root/testfile && echo "Created file in /root" || echo "Failed to create file"
-mkdir -p /etc/test && echo "Created directory in /etc" || echo "Failed to create directory"
-chmod 700 /etc/test && echo "Changed permissions" || echo "Failed to change permissions"
+#touch /root/testfile && echo "Created file in /root" || echo "Failed to create file"
+##mkdir -p /etc/test && echo "Created directory in /etc" || echo "Failed to create directory"
+#chmod 700 /etc/test && echo "Changed permissions" || echo "Failed to change permissions"
 
 echo "All commands executed with root privileges"
 
