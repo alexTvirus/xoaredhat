@@ -55,5 +55,5 @@ EXPOSE 7860
 RUN chmod 777 /entrypoint.sh
 # Set the entrypoint
 USER root
-CMD ["whoami"]
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
