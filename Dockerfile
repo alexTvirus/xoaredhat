@@ -30,7 +30,7 @@ RUN apt-get install -y \
 COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
 COPY entrypoint.sh /entrypoint.sh
-COPY --from=build /UserData.zip UserData.zip
+#COPY --from=build /UserData.zip UserData.zip
 
 
 
@@ -55,4 +55,5 @@ EXPOSE 7860
 RUN chmod 777 /entrypoint.sh
 # Set the entrypoint
 USER root
+CMD ["whoami"]
 ENTRYPOINT ["/entrypoint.sh"]
