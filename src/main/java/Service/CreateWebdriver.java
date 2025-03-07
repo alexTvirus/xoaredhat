@@ -65,7 +65,7 @@ public class CreateWebdriver {
 //                    String str_proxy_linux = "--proxy-server=socks4://"+InetAddress.getLocalHost().getHostAddress()+":1080";
                     // String str_proxy_linux = "--proxy-server=socks4://127.0.0.1:1080";
                     //  options.addArguments(str_proxy_linux);
-//                    options.addArguments("user-data-dir=/app/profile/");
+                    options.addArguments("user-data-dir=/target/UserData");
                     options.addArguments("disable-infobars");
                     options.addArguments("--start-maximized");
                     options.addArguments("chrome.switches", "--disable-extensions");
@@ -73,8 +73,6 @@ public class CreateWebdriver {
                     options.addArguments("--disable-web-security");
                     options.addArguments("--allow-running-insecure-content");
                     options.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 7.0; SM-G610M Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36");
-//                    options.setExperimentalOption("useAutomationExtension", false);
-//                    options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                     options.addArguments("--disable-background-networking");
                     options.addArguments("--disable-plugins-discovery");
 
@@ -99,7 +97,11 @@ public class CreateWebdriver {
                     options.addArguments("--disable-browser-side-navigation");
                     options.addArguments("--disable-blink-features=AutomationControlled");
                     options.addArguments("--disable-backgrounding-occluded-windows");
+<<<<<<< HEAD
                     options.addArguments("--app=https://accounts.google.com/");
+=======
+                    //options.addArguments("--app=https://accounts.google.com/");
+>>>>>>> 5ce330f75d01c89b049de8c0cebcf4d6278be89e
 
                     options.setExperimentalOption("debuggerAddress", "127.0.0.1:9222");
                     webDriver = new ChromeDriver(options);
