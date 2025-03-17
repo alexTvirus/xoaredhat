@@ -215,7 +215,7 @@
                 $('#screen_shot').css('display', 'none');
 
                 $('#Start_Proxy').click(function () {
-                    //startProxy("${startAuto}");
+                    startProxy("${startAuto}");
                     connect();
                 });
 
