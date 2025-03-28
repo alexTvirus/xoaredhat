@@ -1,9 +1,15 @@
 #!/bin/sh
-# Xvfb :99 -screen 0 1024x768x16 &
+ Xvfb :99 -screen 0 1024x768x16 &
 
 which google-chrome
 
 google-chrome-stable --version
+
+google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --remote-debugging-port=9222 &
+
+./dist/ngrok authtoken 2AI2NdKMqKHeyBUXc6rkrySdU0i_89bYasgZt35Zz3NB2fjwj
+
+./dist/ngrok tcp --region us 6969 &>/dev/null &
 
 #unzip /UserData.zip -d /target
 #cp -r "/target/User Data" /target/UserData
@@ -37,6 +43,8 @@ echo "All commands executed with root privileges"
 #sleep 10
 
 #netstat -tuln | grep 9222 || echo "Warning: Selenium Server not listening on 9222 yet"
+
+exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 
 # Start the Java application 
 exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war

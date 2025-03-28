@@ -22,6 +22,17 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
+    RUN echo "seluser:password" | chpasswd && \
+    adduser seluser sudo && \
+    echo "xfce4-session" > /home/seluser/.xsession && \
+    chown seluser:seluser /home/seluser/.xsession
+
+RUN echo "#!/bin/bash\n\
+    dbus-launch --exit-with-session startxfce4 &" > /home/seluser/xstartup && \
+   chmod +x /home/seluser/xstartup
+
+RUN usermod -aG sudo seluser
+    RUN echo "seluser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 
 # Cài đặt các thư viện phụ thuộc cho Chrome
@@ -30,6 +41,7 @@ RUN apt-get install -y \
 
 COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
+COPY --from=build /dist dist
 COPY entrypoint.sh /entrypoint.sh
 #COPY --from=build /UserData.zip UserData.zip
 
@@ -46,6 +58,7 @@ ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 # Đặt biến môi trường để chạy Chrome ở chế độ headless
 
+RUN chmod -R 777 /dist
 RUN chmod -R 777 /target
 RUN chmod 777 /chromedriver
 
@@ -55,7 +68,7 @@ EXPOSE 7860
 
 RUN chmod 777 /entrypoint.sh
 # Set the entrypoint
-USER root
+USER seluser
 
 
 
