@@ -34,6 +34,14 @@ RUN echo "#!/bin/bash\n\
 RUN usermod -aG sudo seluser
     RUN echo "seluser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+RUN groupadd --gid 1013920000 test
+RUN useradd --uid 1013920000 --gid 1013920000 --no-create-home test
+
+RUN echo "test:password" | chpasswd && \
+    adduser test sudo
+
+RUN usermod -aG sudo test
+RUN echo "test ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Cài đặt các thư viện phụ thuộc cho Chrome
 RUN apt-get install -y \
