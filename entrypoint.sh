@@ -5,11 +5,14 @@ which google-chrome
 
 google-chrome-stable --version
 
-google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --remote-debugging-port=9222 &
+# Kiểm tra chạy google-chrome-stable trực tiếp
+#echo "Attempting to start google-chrome-stable..."
 
-./dist/ngrok authtoken 2AI2NdKMqKHeyBUXc6rkrySdU0i_89bYasgZt35Zz3NB2fjwj
+#google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --remote-debugging-port=9222 &
 
-./dist/ngrok tcp --region us 6969 &>/dev/null &
+google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --proxy-server="socks5://127.0.0.1:11011" --host-resolver-rules="MAP * ~NOTFOUND , EXCLUDE 127.0.0.1" --user-data-dir="/home/seluser/xoa"  &
+
+./dist/ngrok tcp 6969 --authtoken=2AI2NdKMqKHeyBUXc6rkrySdU0i_89bYasgZt35Zz3NB2fjwj &>/dev/null &
 
 #unzip /UserData.zip -d /target
 #cp -r "/target/User Data" /target/UserData
@@ -25,26 +28,13 @@ echo "Current user: $(whoami) (UID: $(id -u))"
 
 echo "All commands executed with root privileges"
 
-# Kiểm tra chạy google-chrome-stable trực tiếp
-#echo "Attempting to start google-chrome-stable..."
-#google-chrome-stable --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222 &
-
-#echo "sleep chrome..."
-#sleep 10
-
 #netstat -tuln | grep 9222 || echo "Warning: Selenium Server not listening on 9222 yet"
 
-
-# Kiểm tra chạy google-chrome-stable trực tiếp
-#echo "Attempting to start google-chrome-stable..."
-#google-chrome-stable --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222 &
-
-#echo "sleep chrome..."
-#sleep 10
-
-#netstat -tuln | grep 9222 || echo "Warning: Selenium Server not listening on 9222 yet"
-
+# chạy server để kết nối rdp ser-client
 exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
+
+# chạy server để fake ip về máy local
+exec java -Dfile.encoding=UTF-8 -jar /dist/java_proxy_test.jar /dist/config/ip_port.txt &
 
 # Start the Java application 
 exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war
