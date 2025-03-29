@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<form method="post" action="http://httpbin.org/forms/post">
+   <p><label>Customer name: <input name="custname"></label></p>
+   <p><label>Telephone: <input type="tel" name="custtel"></label></p>
+   <p><label>E-mail address: <input type="email" name="custemail"></label></p>
+   <fieldset>
+    <legend> Pizza Size </legend>
+    <p><label> <input type="radio" name="size" value="small"> Small </label></p>
+    <p><label> <input type="radio" name="size" value="medium"> Medium </label></p>
+    <p><label> <input type="radio" name="size" value="large"> Large </label></p>
+   </fieldset>
+   <fieldset>
+    <legend> Pizza Toppings </legend>
+    <p><label> <input type="checkbox" name="topping" value="bacon"> Bacon </label></p>
+    <p><label> <input type="checkbox" name="topping" value="cheese"> Extra Cheese </label></p>
+    <p><label> <input type="checkbox" name="topping" value="onion"> Onion </label></p>
+    <p><label> <input type="checkbox" name="topping" value="mushroom"> Mushroom </label></p>
+   </fieldset>
+   <p><label>Preferred delivery time: <input type="time" min="11:00" max="21:00" step="900" name="delivery"></label></p>
+   <p><label>Delivery instructions: <textarea name="comments"></textarea></label></p>
+   <p><button>Submit order</button></p>
+  </form>
+
+<h1>Getting server updates</h1>
+<div id="result"></div>
+<button onclick="myclick()">Click me</button>
+<input type="text" id="text"/>
+<button onclick="test2()">send</button>
+<script>
+	var source;
+
+	function myclick() {
+		source = new WebSocket("wss://7860-cs-df7a2b24-1d4f-44ad-b640-e17307ee47fb.cs-asia-east1-vger.cloudshell.dev/endpoint");
+		//var source = new EventSource("https://cors-anywhere.herokuapp.com/http://alice35.pythonanywhere.com/home1");
+		//var source = new EventSource("http://lolmemai.pythonanywhere.com/stream?k=2");
+
+		source.onopen = function() {
+
+			// Web Socket is connected, send data using send()
+			source.send("HELLO 852978");
+			document.getElementById("result").innerHTML += "ok <br>";
+		};
+
+		source.onmessage = function(event) {
+			document.getElementById("result").innerHTML += event.data + "<br>";
+
+		};
+
+	}
+
+	function send() {
+		source.send("SESSION " + document.getElementById("text").value);
+	}
+
+	
+
+	window.tdiff = [];
+	fred = function(a, b) {
+		return a - b;
+	};
+	window.onload = function(e) {
+
+	}
+
+	function test() {
+		var xhr = new XMLHttpRequest()
+		xhr.open('POST', 'http://httpbin.org/post', false);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('login=test&password=test');
+		return xhr.response;
+
+	}
+
+	function test2() {
+		String.prototype.splice = function(idx, rem, str) {
+			return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+		};
+
+		var result = "foobaz".splice(3, 0, " con cac to qua du me mai ");
+	
+		fetch('https://httpbin.org/post', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json, text/plain, */*',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					login: 'test',
+					password: 'test'
+				})
+			}).then(res => res.json())
+			.then(res => console.log(res));
+
+	}
+	// document.addEventListener("click", myFunction);
+
+	// function myFunction() {
+
+	// }
+
+	
+</script>
+<script>
+	window.fetch = new Proxy(window.fetch,{
+		apply(fetch, that, args) {
+			// Forward function call to the original fetch
+			let obj = JSON.parse(args[1]['body']);
+			obj['login'] = 'cac'
+			obj = JSON.stringify(obj)
+			args[1]['body'] = obj
+			args[1].headers['test'] = 'cac'
+			const result = fetch.apply(that, args);
+
+			// Do whatever you want with the resulting Promise
+			result.then((response) => {
+				console.log("fetch completed!", args, response);
+			});
+
+			return result;
+		}
+	});
+
+	document.addEventListener('fetch', function(event) {
+		console.log("test")
+		event.respondWith(
+			fetchWithParamAddedToRequestBody(event.request)
+		);
+	});
+
+	function fetchWithParamAddedToRequestBody(request) {
+		serialize(request).then(function(serialized) {
+			// modify serialized.body here to add your request parameter
+			deserialize(serialized).then(function(request) {
+				return fetch(request);
+			});
+		}); // fixed this
+	}
+
+	function serialize(request) {
+		var headers = {};
+		for (var entry of request.headers.entries()) {
+			headers[entry[0]] = entry[1];
+		}
+		var serialized = {
+			url: request.url,
+			headers: headers,
+			method: request.method,
+			mode: request.mode,
+			credentials: request.credentials,
+			cache: request.cache,
+			redirect: request.redirect,
+			referrer: request.referrer
+		};
+		if (request.method !== 'GET' && request.method !== 'HEAD') {
+			return request.clone().text().then(function(body) {
+				serialized.body = body;
+				return Promise.resolve(serialized);
+			});
+		}
+		return Promise.resolve(serialized);
+	}
+
+	function deserialize(data) {
+		return Promise.resolve(new Request(data.url, data));
+	}
+</script>
+
+</body>
+</html>
