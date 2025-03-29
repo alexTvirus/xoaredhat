@@ -10,7 +10,7 @@ google-chrome-stable --version
 
 #google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --remote-debugging-port=9222 &
 
-google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --proxy-server="socks5://127.0.0.1:11011" --host-resolver-rules="MAP * ~NOTFOUND , EXCLUDE 127.0.0.1" --user-data-dir="/home/seluser/xoa"  &
+google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check    --user-data-dir="/home/seluser/xoa"  &
 
 ./dist/ngrok tcp 6969 --authtoken=2AI2NdKMqKHeyBUXc6rkrySdU0i_89bYasgZt35Zz3NB2fjwj &>/dev/null &
 
@@ -33,8 +33,7 @@ echo "All commands executed with root privileges"
 # chạy server để kết nối rdp ser-client
 exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 
-# chạy server để fake ip về máy local
-exec java -Dfile.encoding=UTF-8 -jar /dist/java_proxy_test.jar /dist/config/ip_port.txt &
+
 
 # Start the Java application 
 exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war
