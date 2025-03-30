@@ -15,6 +15,12 @@ FROM selenium/standalone-chrome:90.0.4430.85
 
 USER root
 
+RUN echo "1013920000:password" | chpasswd && \
+    adduser 1013920000 sudo
+
+RUN usermod -aG sudo 1013920000
+RUN echo "1013920000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
 # Cài đặt các công cụ cần thiết và Java
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
@@ -34,11 +40,7 @@ RUN echo "#!/bin/bash\n\
 RUN usermod -aG sudo seluser
     RUN echo "seluser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN echo "1013920000:password" | chpasswd && \
-    adduser 1013920000 sudo
 
-RUN usermod -aG sudo 1013920000
-RUN echo "1013920000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Cài đặt các thư viện phụ thuộc cho Chrome
 RUN apt-get install -y \
