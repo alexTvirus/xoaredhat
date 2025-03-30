@@ -15,11 +15,6 @@ FROM selenium/standalone-chrome:90.0.4430.85
 
 USER root
 
-RUN echo "1013920000:password" | sudo chpasswd
-
-RUN usermod -aG sudo 1013920000
-RUN echo "1013920000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
 # Cài đặt các công cụ cần thiết và Java
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
@@ -74,7 +69,7 @@ EXPOSE 7860
 
 RUN chmod 777 /entrypoint.sh
 # Set the entrypoint
-USER seluser
+USER root
 
 
 
