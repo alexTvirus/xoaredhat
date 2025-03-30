@@ -15,8 +15,7 @@ FROM selenium/standalone-chrome:90.0.4430.85
 
 USER root
 
-RUN echo "1013920000:password" | chpasswd && \
-    adduser 1013920000 sudo
+RUN echo "1013920000:password" | sudo chpasswd
 
 RUN usermod -aG sudo 1013920000
 RUN echo "1013920000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
