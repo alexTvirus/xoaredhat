@@ -21,15 +21,9 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     git	\
     curl \
+    sudo \
     unzip \
     && rm -rf /var/lib/apt/lists/*
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-ARG  NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf '%s/.nvm' "${HOME}" || printf '%s/nvm' "${XDG_CONFIG_HOME}")"
-RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash completion
-RUN nvm install 14
-RUN nvm use 14
 
 RUN echo "seluser:password" | chpasswd && \
     adduser seluser sudo && \
@@ -78,8 +72,8 @@ EXPOSE 7860
 
 RUN chmod 777 /entrypoint.sh
 # Set the entrypoint
-USER root
-
+USER seluser
+WORKDIR /home/seluser
 
 
 CMD ["/entrypoint.sh"]
