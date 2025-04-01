@@ -30,21 +30,26 @@ echo "All commands executed with root privileges"
 
 #netstat -tuln | grep 9222 || echo "Warning: Selenium Server not listening on 9222 yet"
 
+# chạy server để kết nối rdp ser-client
+exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf '%s/.nvm' "${HOME}" || printf '%s/nvm' "${XDG_CONFIG_HOME}")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash completion
+nvm install 14
+nvm use 14
+
 git clone https://github.com/alexTvirus/wstunel-client.git
 
 git clone https://github.com/alexTvirus/lite-http-tunnel-client.git
 
-bash /lite-http-tunnel-client/lite-http-tunnel config server https://neighborly-tungsten-microwave.glitch.me/
-bash /lite-http-tunnel-client/lite-http-tunnel auth abc abc
-bash /lite-http-tunnel-client/lite-http-tunnel start 9998 &
+bash /home/seluser/lite-http-tunnel-client/lite-http-tunnel config server https://neighborly-tungsten-microwave.glitch.me/
+bash /home/seluser/lite-http-tunnel-client/lite-http-tunnel auth abc abc
+bash /home/seluser/lite-http-tunnel-client/lite-http-tunnel start 9998 &
 
 # ở client chỉ cần kết nối đến glitch 
-bash /wstunel-client/wstunnel -s 0.0.0.0:9998 -t 0.0.0.0:6969 &
-
-# chạy server để kết nối rdp ser-client
-exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
-
-
+bash /home/seluser/wstunel-client/wstunnel -s 0.0.0.0:9998 -t 0.0.0.0:6969 &
 
 # Start the Java application 
 exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war
