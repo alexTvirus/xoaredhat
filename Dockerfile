@@ -19,10 +19,19 @@ USER root
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
     net-tools \
+    git	\
+    curl \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-    RUN echo "seluser:password" | chpasswd && \
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+ENV NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf '%s/.nvm' "${HOME}" || printf '%s/nvm' "${XDG_CONFIG_HOME}")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash completion
+nvm install 14
+nvm use 14
+
+RUN echo "seluser:password" | chpasswd && \
     adduser seluser sudo && \
     echo "xfce4-session" > /home/seluser/.xsession && \
     chown seluser:seluser /home/seluser/.xsession
