@@ -29,9 +29,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf '%s/.nvm' "${HOME}" || 
 nvm install 14
 nvm use 14
 
-curl -O https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+curl -O /home/seluser/cloudflared-linux-amd64.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
 
-dpkg -i cloudflared-linux-amd64.deb
+dpkg -i /home/seluser/cloudflared-linux-amd64.deb
 
 cloudflared --url 0.0.0.0:9998
 
