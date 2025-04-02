@@ -26,8 +26,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
-RUN cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
+RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+RUN apt-get install ./cloudflared-linux-amd64.deb
 RUN chmod +x /usr/local/bin/cloudflared
 
 RUN echo "seluser:password" | chpasswd && \
