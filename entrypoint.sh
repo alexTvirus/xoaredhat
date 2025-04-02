@@ -17,7 +17,7 @@ echo "Current user: $(whoami) (UID: $(id -u))"
 exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 
 # --------------------- test voi ngrok
-#./dist/ngrok tcp 6969 --authtoken=2GhAMGDEtzIqD7Izk7BL8aJ5Rbx_5a7jfpZgt4nkUhRAbaQAm &>/dev/null &
+./dist/ngrok tcp 6969 --authtoken=2GhAMGDEtzIqD7Izk7BL8aJ5Rbx_5a7jfpZgt4nkUhRAbaQAm &>/dev/null &
 # -------------------
 
 # cài đặt nodejs
@@ -40,7 +40,7 @@ nvm use 14
 
 # --------------------- test voi cloudflare tunel
 
-cloudflared --url 0.0.0.0:9998 &
+#cloudflared --url 0.0.0.0:9998 &
 
 # -------------------
 
