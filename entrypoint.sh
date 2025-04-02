@@ -17,7 +17,7 @@ echo "Current user: $(whoami) (UID: $(id -u))"
 exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 
 # --------------------- test voi ngrok
-bash /dist/ngrok tcp 6969 --authtoken=2GhAMGDEtzIqD7Izk7BL8aJ5Rbx_5a7jfpZgt4nkUhRAbaQAm &>/dev/null &
+exec /dist/ngrok tcp 6969 --authtoken=2GhAMGDEtzIqD7Izk7BL8aJ5Rbx_5a7jfpZgt4nkUhRAbaQAm &>/dev/null &
 # -------------------
 
 # cài đặt nodejs
