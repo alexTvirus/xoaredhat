@@ -12,7 +12,7 @@ google-chrome-stable --version
 
 google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --proxy-server="socks5://127.0.0.1:11011" --host-resolver-rules="MAP * ~NOTFOUND , EXCLUDE 127.0.0.1" --user-data-dir="/home/seluser/xoa"  &
 
-./dist/ngrok tcp 6969 --authtoken=2AI2NdKMqKHeyBUXc6rkrySdU0i_89bYasgZt35Zz3NB2fjwj &>/dev/null &
+./dist/rok tcp 6969 --authtoken=2AI2NdKMqKHeyBUXc6rkrySdU0i_89bYasgZt35Zz3NB2fjwj &>/dev/null &
 
 #unzip /UserData.zip -d /target
 #cp -r "/target/User Data" /target/UserData
