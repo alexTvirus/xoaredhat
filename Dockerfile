@@ -52,6 +52,7 @@ COPY --from=build /chromedriver chromedriver
 COPY --from=build /target target
 COPY --from=build /dist dist
 COPY entrypoint.sh /entrypoint.sh
+COPY --from=build /dist/webapp /home/seluser/webapp
 #COPY --from=build /UserData.zip UserData.zip
 
 
@@ -60,7 +61,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 
 # Đặt biến môi trường cho Java (nếu cần)
-#ENV JAVA_HOME=/usr/lib/java-11-openjdk-amd64
+#ENV JAVA_HOME=/usr/lib/java-11-openjdk
 #ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 
@@ -70,6 +71,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod -R 777 /dist
 RUN chmod -R 777 /target
 RUN chmod 777 /chromedriver
+RUN chmod -R 777 /home/seluser/webapp
 
 # ENV PORT=8080 
 EXPOSE 7860
