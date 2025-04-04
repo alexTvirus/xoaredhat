@@ -9,7 +9,7 @@ google-chrome-stable --version
 
 #google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check --remote-debugging-port=9222 &
 
-#google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check    --user-data-dir="/home/seluser/xoa"  &
+google-chrome-stable  --no-sandbox --disable-dev-shm-usage --disable-gpu --no-first-run --disable-fre --no-default-browser-check    --user-data-dir="/home/seluser/xoa"  &
 
 echo "Current user: $(whoami) (UID: $(id -u))"
 
