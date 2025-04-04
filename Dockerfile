@@ -17,7 +17,7 @@ USER root
 
 # Cài đặt các công cụ cần thiết và Java
 RUN apt-get update && apt-get install -y \
-    openjdk-8-jdk \
+    openjdk-11-jdk \
     net-tools \
     git	\
     curl \
@@ -60,8 +60,8 @@ COPY entrypoint.sh /entrypoint.sh
 
 
 # Đặt biến môi trường cho Java (nếu cần)
-ENV JAVA_HOME=/usr/lib/java-8-openjdk-amd64
-ENV PATH="$JAVA_HOME/bin:${PATH}"
+#ENV JAVA_HOME=/usr/lib/java-11-openjdk-amd64
+#ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 
 
