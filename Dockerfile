@@ -30,6 +30,9 @@ RUN apt-get update && apt-get install -y \
 #RUN apt-get install ./cloudflared-linux-amd64.deb
 #RUN chmod +x /usr/local/bin/cloudflared
 
+
+RUN mkdir -p /home/seluser/.vnc
+
 RUN echo "seluser:password" | chpasswd && \
     adduser seluser sudo && \
     echo "xfce4-session" > /home/seluser/.xsession && \
@@ -48,11 +51,11 @@ RUN usermod -aG sudo seluser
 RUN apt-get install -y \
 	procps
 
-COPY --from=build /chromedriver chromedriver
-COPY --from=build /target target
-COPY --from=build /dist dist
+COPY chromedriver /chromedriver
+#COPY --from=build /target target
+COPY dist /dist
 COPY entrypoint.sh /entrypoint.sh
-COPY --from=build /dist/webapp /home/seluser/webapp
+COPY dist/webapp /home/seluser/webapp
 #COPY --from=build /UserData.zip UserData.zip
 
 
@@ -69,7 +72,7 @@ COPY --from=build /dist/webapp /home/seluser/webapp
 # Đặt biến môi trường để chạy Chrome ở chế độ headless
 
 RUN chmod -R 777 /dist
-RUN chmod -R 777 /target
+#RUN chmod -R 777 /target
 RUN chmod 777 /chromedriver
 RUN chmod -R 777 /home/seluser/webapp
 
