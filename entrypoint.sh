@@ -21,12 +21,12 @@ exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 # -------------------
 
 # cài đặt nodejs
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf '%s/.nvm' "${HOME}" || printf '%s/nvm' "${XDG_CONFIG_HOME}")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash completion
-nvm install 14
-nvm use 14
+#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+#export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf '%s/.nvm' "${HOME}" || printf '%s/nvm' "${XDG_CONFIG_HOME}")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash completion
+#nvm install 14
+#nvm use 14
 
 # --------------------- test voi lite-tunel seft host
 
@@ -44,13 +44,13 @@ nvm use 14
 
 # -------------------
 
-git clone https://github.com/alexTvirus/wstunel-client.git
+#git clone https://github.com/alexTvirus/wstunel-client.git
 
 # ở client chỉ cần kết nối đến glitch 
 #bash /home/seluser/wstunel-client/wstunnel -s 0.0.0.0:7860 -t 0.0.0.0:6969
 
 # java
-exec java -Dfile.encoding=UTF-8 -jar /dist/ServerWebSocket-vnc.jar
+exec java -Dfile.encoding=UTF-8 -jar /dist/ServerWebSocket-vnc.jar 7860 6969
 
 # Start the Java application 
 # exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war
