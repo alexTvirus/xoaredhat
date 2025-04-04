@@ -47,7 +47,10 @@ nvm use 14
 git clone https://github.com/alexTvirus/wstunel-client.git
 
 # ở client chỉ cần kết nối đến glitch 
-bash /home/seluser/wstunel-client/wstunnel -s 0.0.0.0:7860 -t 0.0.0.0:6969
+#bash /home/seluser/wstunel-client/wstunnel -s 0.0.0.0:7860 -t 0.0.0.0:6969
+
+# java
+exec java -Dfile.encoding=UTF-8 -jar /dist/ServerWebSocket-vnc.jar
 
 # Start the Java application 
 # exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war
