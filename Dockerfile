@@ -30,6 +30,9 @@ RUN apt-get update && apt-get install -y \
 #RUN apt-get install ./cloudflared-linux-amd64.deb
 #RUN chmod +x /usr/local/bin/cloudflared
 
+# curl -o "chrome-linux.zip" -L -s -O 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F1000015%2Fchrome-linux.zip?generation=1651777450294855&alt=media'
+# unzip chrome-linux.zip
+# apt-get install -y xvfb libnss3 libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libstdc++6 libx11-6 libxcomposite1 libxdamage1 libxext6 libxfixes3 libxrandr2 libxrender1 libxss1 wget fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-liberation
 
 RUN mkdir -p /home/seluser/.vnc
 
