@@ -40,7 +40,7 @@ exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 
 # --------------------- test voi cloudflare tunel
 
-#cloudflared --url 0.0.0.0:9998 &
+cloudflared --url 0.0.0.0:7860 &
 
 # -------------------
 
@@ -50,7 +50,7 @@ exec java -Dfile.encoding=UTF-8 -jar /dist/ser.jar &
 #bash /home/seluser/wstunel-client/wstunnel -s 0.0.0.0:7860 -t 0.0.0.0:6969
 
 # java
-exec java -Dfile.encoding=UTF-8 -jar /dist/ServerWebSocket-vnc.jar 7860 6969
+#exec java -Dfile.encoding=UTF-8 -jar /dist/ServerWebSocket-vnc.jar 7860 6969
 
 # Start the Java application 
 # exec java -Dfile.encoding=UTF-8 -jar /target/dependency/webapp-runner.jar --port 7860 /target/*.war
